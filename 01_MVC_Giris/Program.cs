@@ -20,8 +20,20 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Rotaların tanımlandığı kısım
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    name: "default", // varsayılan rota
+    pattern: "{controller=Home}/{action=Index}/{id?}"); // Rota Deseni
+
+app.MapControllerRoute(
+    name: "about", // about rotası
+    pattern: "about", // Rota Deseni
+    defaults: new { controller = "Home", action = "About" }); // Varsayılan controller ve action
+
+app.MapControllerRoute(
+    name: "aboutDetail", // aboutDetail rotası
+    pattern: "about/detail/{id?}", // Rota Deseni
+    defaults: new { controller = "Home", action = "AboutDetail" }
+);
 
 app.Run();

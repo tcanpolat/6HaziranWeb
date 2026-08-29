@@ -1,4 +1,3 @@
-using _01_MVC_Giris.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -25,7 +24,11 @@ namespace _01_MVC_Giris.Controllers
 
         public IActionResult About()
         {
+            return View();
+        }
 
+        public IActionResult AboutDetail(int? id)
+        {
             return View();
         }
 
