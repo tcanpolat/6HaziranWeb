@@ -16,6 +16,8 @@ namespace _02_Controller_To_View.Controllers
             return View();
         }
 
+
+
         public IActionResult Details(int id)
         {
             var product = $"Ürün {id}";
