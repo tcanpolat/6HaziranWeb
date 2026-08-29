@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";  
+}
+@{
+    SelectListItem[] liste = new SelectListItem[]
+    {
+       new SelectListItem { Value = "Ali", Text = "Ali" },
+       new SelectListItem { Value = "Serhan", Text = "Serhan" },
+       new SelectListItem { Value = "Emre", Text = "Emre" }
+    };
+}
+
+
+<div class="text-center">
+   @*  <form method="POST" action="Home/KisiGonder">
+        <input type="text" name="ad" />
+        <br />
+        <select name="kisiler">
+            <option value="Ali">Ali</option>
+            <option value="Serhan">Serhan</option>
+            <option value="Emre">Emre</option>
+        </select><br />
+        Onay: <input type="checkbox" name="onay" />
+        <br />
+        <input type="submit" value="Kişi Gönder"/>
+    </form> *@
+    @* Html Helper *@
+    @using (Html.BeginForm("KisiGonder", "Home", FormMethod.Post))
+    {
+        @Html.TextBox("ad")
+        <br/>
+        @Html.DropDownList("kisiler", liste)
+        <br />
+        <span>Onay:</span>
+        @Html.CheckBox("onay")
+        <br/>
+        <input type="submit" value="Gönder" />
+    }
+</div>
