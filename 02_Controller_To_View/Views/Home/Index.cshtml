@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+    // Bu sayfa bir razor pagetir. C# kodları @{} blokları içinde yazılır.
+}
+<div class="text-center">
+    @foreach (var product in (List<string>)ViewData["products"])
+    {
+        <p>@product</p>
+    }
+</div>

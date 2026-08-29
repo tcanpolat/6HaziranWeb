@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="01_MVC_Giris/01_MVC_Giris.csproj" Id="f881a639-70b5-4802-bc65-fd2b3572225d" />
+  <Project Path="02_Controller_To_View/02_Controller_To_View.csproj" Id="3886b065-911e-4c62-8936-00526b8545d9" />
 </Solution>
