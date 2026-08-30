@@ -1,1 +1,1 @@
-# 6HaziranWeb
+# 6 Haziran Web Grubu .NET örnekleri
