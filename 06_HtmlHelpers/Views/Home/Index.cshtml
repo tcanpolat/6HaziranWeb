@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model User
+
+<div class="text-center">
+    @using (Html.BeginForm("Submit", "Home", FormMethod.Post))
+    {
+        <fieldset>
+            <legend>Personel Information</legend>
+            <div>
+                @Html.LabelFor(model => model.Name)
+                @Html.TextBoxFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Age)
+                @Html.TextBoxFor(model => model.Age)
+                @Html.ValidationMessageFor(model => model.Age)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.IsSubscribed)
+                @Html.CheckBoxFor(model => model.IsSubscribed)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.CountryList)
+                @Html.DropDownListFor(model => model.Country,Model.CountryList)
+            </div>
+            <div>
+                @Html.RadioButtonFor(model => model.Gender,"Erkek") Male
+                @Html.RadioButtonFor(model => model.Gender, "Kadın") Famale
+            </div>
+            <div>
+                <input type="submit" value="Personel Bilgilerini Kaydet" />
+            </div>
+        </fieldset>
+    }
+</div>
