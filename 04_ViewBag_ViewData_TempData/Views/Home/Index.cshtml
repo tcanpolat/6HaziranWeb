@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Homepage</h1>
+    <p>@ViewBag.ad</p>
+    <p>@ViewBag.sonuc</p>
+    @foreach(var renk in ViewBag.liste)
+    {
+        <span>@renk</span>
+    }
+    <p>@ViewData["ad"]</p>
+</div>

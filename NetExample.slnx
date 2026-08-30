@@ -2,4 +2,6 @@
   <Project Path="01_MVC_Giris/01_MVC_Giris.csproj" Id="f881a639-70b5-4802-bc65-fd2b3572225d" />
   <Project Path="02_Controller_To_View/02_Controller_To_View.csproj" Id="3886b065-911e-4c62-8936-00526b8545d9" />
   <Project Path="03_View_To_Controller/03_View_To_Controller.csproj" Id="b776c8fc-3787-4bbe-82ab-11daa5dc6b7c" />
+  <Project Path="04_ViewBag_ViewData_TempData/04_ViewBag_ViewData_TempData.csproj" Id="6c904514-7fef-425a-84c2-0d069638ae97" />
+  <Project Path="05_ModelsExample/05_ModelsExample.csproj" Id="2670f235-88af-405f-950e-c018ec63bc49" />
 </Solution>
