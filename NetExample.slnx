@@ -8,4 +8,5 @@
   <Project Path="07_CustomHelpers/07_CustomHelpers.csproj" Id="c8af4fb3-d9c0-4e60-83eb-6e251f1edd3a" />
   <Project Path="08_View_PartialView_Layout/08_View_PartialView_Layout.csproj" Id="fd93eae9-9a28-4088-80b2-77709805a378" />
   <Project Path="09_Render_Nested_Section/09_Render_Nested_Section.csproj" Id="2848da82-5b17-4d9a-bd6f-2177c10ad078" />
+  <Project Path="10_Models_Binding/10_Models_Binding.csproj" Id="e9445609-2ab0-4ee5-9351-383f4bfe4a80" />
 </Solution>

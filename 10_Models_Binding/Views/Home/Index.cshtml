@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model Kisi
+<div class="text-center">
+    <h3 class="display-4">Homepage</h3>
+    <div>
+        <p>Ad: @Model.Ad</p>
+        <p>Soyad: @Model.Soyad</p>
+        <p>Yaş: @Model.Yas</p>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div>Ad: @Html.TextBoxFor(model => model.Ad)</div>
+        <div>Soyad: @Html.TextBoxFor(model => model.Soyad)</div>
+        <div>Yaş: @Html.TextBoxFor(model => model.Yas)</div>
+        <input type="submit" value="Form Gönder" />
+    }
+</div>
