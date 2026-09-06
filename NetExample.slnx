@@ -9,4 +9,6 @@
   <Project Path="08_View_PartialView_Layout/08_View_PartialView_Layout.csproj" Id="fd93eae9-9a28-4088-80b2-77709805a378" />
   <Project Path="09_Render_Nested_Section/09_Render_Nested_Section.csproj" Id="2848da82-5b17-4d9a-bd6f-2177c10ad078" />
   <Project Path="10_Models_Binding/10_Models_Binding.csproj" Id="e9445609-2ab0-4ee5-9351-383f4bfe4a80" />
+  <Project Path="11_Fluent_Validation/11_Fluent_Validation.csproj" Id="b7a87143-fd6c-443a-b8ab-51bb7a72ff54" />
+  <Project Path="12_Dependency_Injection/12_Dependency_Injection.csproj" Id="9b74702b-9650-48a4-848d-f585b2c72c15" />
 </Solution>

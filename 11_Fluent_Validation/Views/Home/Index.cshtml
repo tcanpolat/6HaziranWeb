@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model _11_Fluent_Validation.ViewModels.KisiAdresViewModel
+
+<div class="text-center">
+   <h3>Fluent Validation</h3>
+</div>
+<form asp-action="Submit" method="POST">
+    <div>
+        <label>Ad:</label>
+        <input asp-for="Kisi.Ad" class="form-control" />
+        <span asp-validation-for="Kisi.Ad" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Soyad:</label>
+        <input asp-for="Kisi.Soyad" class="form-control" />
+        <span asp-validation-for="Kisi.Soyad" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Yaş:</label>
+        <input asp-for="Kisi.Yas" class="form-control" />
+        <span asp-validation-for="Kisi.Yas" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Şehir:</label>
+        <input asp-for="Adres.Sehir" class="form-control" />
+        <span asp-validation-for="Adres.Sehir" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Adres Tanım:</label>
+        <input asp-for="Adres.AdresTanim" class="form-control" />
+        <span asp-validation-for="Adres.AdresTanim" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="submit" class="btn btn-primary mt-3" value="Formu Gönder"/>
+    </div>
+</form>
