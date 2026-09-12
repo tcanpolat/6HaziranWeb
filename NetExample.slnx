@@ -11,4 +11,6 @@
   <Project Path="10_Models_Binding/10_Models_Binding.csproj" Id="e9445609-2ab0-4ee5-9351-383f4bfe4a80" />
   <Project Path="11_Fluent_Validation/11_Fluent_Validation.csproj" Id="b7a87143-fd6c-443a-b8ab-51bb7a72ff54" />
   <Project Path="12_Dependency_Injection/12_Dependency_Injection.csproj" Id="9b74702b-9650-48a4-848d-f585b2c72c15" />
+  <Project Path="13_State_Management/13_State_Management.csproj" Id="0255d90d-9fa5-407e-87c1-bd459c1cc26a" />
+  <Project Path="14_Middleware/14_Middleware.csproj" Id="629bf505-2880-434c-a034-9ae68b9e3914" />
 </Solution>
