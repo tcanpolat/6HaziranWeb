@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome, Student</h1>
+    <form method="POST" asp-action="AddData" class="mb-4">
+        <button type="submit" class="btn btn-danger">Statik Öğrenci Ekle</button>
+    </form>
+    <div class="w-50 mx-auto">
+        <form method="POST" asp-action="AddDataSecure" class="mb-4">
+            <div>
+                <input type="text" name="FirstName" placeholder="Öğrenci Adı" required class="form-control mb-2" />
+            </div>
+            <div>
+                <input type="text" name="LastName" placeholder="Öğrenci Soyadı" required class="form-control mb-2" />
+            </div>
+            <div>
+                <input type="text" name="Age" placeholder="Öğrenci Yaşı" required class="form-control mb-2" />
+            </div>
+            <button type="submit" class="btn btn-danger">Öğrenci Ekle</button>
+        </form>
+    </div>
+   
+</div>

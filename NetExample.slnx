@@ -13,4 +13,6 @@
   <Project Path="12_Dependency_Injection/12_Dependency_Injection.csproj" Id="9b74702b-9650-48a4-848d-f585b2c72c15" />
   <Project Path="13_State_Management/13_State_Management.csproj" Id="0255d90d-9fa5-407e-87c1-bd459c1cc26a" />
   <Project Path="14_Middleware/14_Middleware.csproj" Id="629bf505-2880-434c-a034-9ae68b9e3914" />
+  <Project Path="15_AdoNetExample/15_AdoNetExample.csproj" Id="c0696cb3-b035-4bf7-bf7f-714cb7a40cee" />
+  <Project Path="16_DapperExample/16_DapperExample.csproj" Id="f46f6415-a5f5-44b7-ba6d-e5887d29c383" />
 </Solution>
