@@ -1,0 +1,25 @@
+﻿@model Product
+<h4>Ürünü silmek istediğinize emin misiniz?</h4>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dt>
+    </dl>
+</div>
+<div>
+   <form asp-action="Delete" method="POST">
+       <input type="hidden" asp-for="ProductId" name="id"/>
+       <input type="submit" value="Sil"  class="btn btn-danger"/>
+       <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+   </form>
+</div>

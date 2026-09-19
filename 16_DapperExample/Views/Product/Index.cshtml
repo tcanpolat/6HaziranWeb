@@ -1,1 +1,27 @@
-﻿<h4>Product Page</h4>
+﻿@model IEnumerable<Product>
+<h4>Product Page</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                   <td>@product.Name</td>
+                   <td>@product.Price</td>
+                   <td>@product.Category.Name</td>
+                   <td>
+                    <a asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-success">Details</a>
+                    <a asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-danger">Delete</a>
+                   </td>
+            </tr>
+        }
+    </tbody>
+</table>
