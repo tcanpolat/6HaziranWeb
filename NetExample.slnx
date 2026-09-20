@@ -15,4 +15,5 @@
   <Project Path="14_Middleware/14_Middleware.csproj" Id="629bf505-2880-434c-a034-9ae68b9e3914" />
   <Project Path="15_AdoNetExample/15_AdoNetExample.csproj" Id="c0696cb3-b035-4bf7-bf7f-714cb7a40cee" />
   <Project Path="16_DapperExample/16_DapperExample.csproj" Id="f46f6415-a5f5-44b7-ba6d-e5887d29c383" />
+  <Project Path="17_EntityFrameworkCoreExample/17_EntityFrameworkCoreExample.csproj" Id="2e8a445f-09c1-47ca-b3ba-85f24b133ca7" />
 </Solution>

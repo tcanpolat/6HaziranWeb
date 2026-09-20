@@ -1,0 +1,20 @@
+﻿@model Student
+<h4>Öğrenci bilgilerini silmek istiyor musunuz ?</h4>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title mb-3">@Model.Name</h5>
+        <p>Yaşı: @Model.Age</p>
+        <p>Bölümü: @Model.Department</p>
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="DeleteConfirmed" method="POST">
+            <input type="hidden" asp-for="Id"/>
+            <div class="form-group d-flex justify-content-center">
+                <input type="submit" value="Sil" class="btn btn-danger mb-2 mt-2 me-2" />
+                <a asp-action="Index" class="btn btn-secondary mb-2 mt-2">İptal</a>
+            </div>
+        </form>
+    </div>
+</div>
