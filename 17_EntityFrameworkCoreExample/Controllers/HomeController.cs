@@ -1,5 +1,7 @@
 using _17_EntityFrameworkCoreExample.Data;
+using _17_EntityFrameworkCoreExample.Extensions;
 using _17_EntityFrameworkCoreExample.Models;
+using _17_EntityFrameworkCoreExample.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -132,16 +134,79 @@ namespace _17_EntityFrameworkCoreExample.Controllers
             // Linq Query Syntax kullanarak 18 yaþýndan büyük öðrencileri çekiyoruz.
             // Query Syntax: from ... in ... where ... select ... Söz dizimi kullanýr.
             List<Student> students = (from s in _context.Students
-                                     where s.Age > 18
-                                     select s).ToList();
-            return View("Index",students);
+                                      where s.Age > 18
+                                      select s).ToList();
+            return View("Index", students);
         }
         public IActionResult MethodSyntax()
         {
             // Linq Query Syntax kullanarak 18 yaþýndan küçük öðrencileri çekiyoruz.
-            // Query Syntax: from ... in ... where ... select ... Söz dizimi kullanýr.
-            List<Student> students = _context.Students.Where(s => s.Age < 18).ToList(); // Method Syntax: .Where(...) Söz dizimi kullanýr.
+            List<Student> students = _context.Students.Where(s => s.Age < 18).ToList(); // Select * from Students where Age < 18 Method Syntax: .Where(...) Söz dizimi kullanýr.
             return View("Index", students);
+        }
+
+        public IActionResult Join()
+        {
+            // Öðrenciler ve kurslar arasýnda join iþlemi yapýyoruz.
+
+            // Query Syntax kullanarak join iþlemi yapýyoruz.
+            //var studentCourses = from s in _context.Students
+            //                     join c in _context.Courses on s.Id equals c.StudentId
+            //                     select new
+            //                     {
+            //                         StudentName = s.Name,
+            //                         CourseName = c.Title
+            //                     };
+
+            // Method Syntax kullanarak join iþlemi yapýyoruz.
+            var studentCourses = _context.Students
+                                .Join(_context.Courses,
+                                s => s.Id,
+                                c => c.StudentId,
+                                (s, c) => new
+                                {
+                                    StudentName = s.Name,
+                                    CourseName = c.Title
+                                }).ToList();
+            return View(studentCourses);
+        }
+
+        public IActionResult GroupByDepartment()
+        {
+            var groupedStudents = _context.Students
+                .GroupBy(s => s.Department)
+                .Select(g => new GroupedStudentViewModel
+                {
+                    Department = g.Key,
+                    Students = g.ToList()
+                }).ToList();
+
+            return View(groupedStudents);
+
+        }
+
+        // Bazý DB iþleri için özel yardýmcý methodlar gerekebilir. Bunlara custom extension methodlar denir. 
+        // Öðrencileri yaþ aralýklarýna göre gruplamak için bir extension method yazalým.
+
+        public IActionResult CustomExtensionMethod()
+        {
+            List<Student> students = _context.Students.ToList();
+            var groupedStudentsByAge = students.GroupByAgeRange(); // Extension method çaðrýsý
+            return View(groupedStudentsByAge);
+        }
+
+        public IActionResult GetStudentByDepartment()
+        {
+            ViewData["Students"] = new List<Student>();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult GetStudentByDepartment(string department)
+        {
+            var students = _context.Students.FromSqlInterpolated($"Exec GetStudentsByDepartment {department}");
+            ViewData["Students"] = students;
+            return View();
         }
     }
 }

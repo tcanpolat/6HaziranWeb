@@ -1,0 +1,25 @@
+﻿ @model List<GroupedStudentViewModel>
+ <h4>Bölümler Göre Öğrenciler</h4>
+ <div class="text-center">
+     @foreach (var group in Model)
+    {
+        <h5>@group.Department</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Adı</th>
+                    <th>Yaşı</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in group.Students)
+                {
+                    <tr>
+                        <td>@student.Name</td>
+                        <td>@student.Age</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+ </div>
