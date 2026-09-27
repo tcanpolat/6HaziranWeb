@@ -6,6 +6,13 @@
     <form asp-action="MethodSyntax" method="POST" class="mx-2">
         <input type="submit" value="Method Syntax" class="btn btn-primary" />
     </form>
+    <form asp-action="RawSql" method="POST" class="mx-2">
+        <input type="submit" value="Raw Sql" class="btn btn-primary" />
+    </form>
+    <form asp-action="BulkInsert" method="POST" class="mx-2">
+        <input type="submit" value="Bulk Insert" class="btn btn-primary" />
+    </form>
+    <button class="btn btn-primary mx-2" id="addStudentsByTransaction">Transaction ile Öğrenci ekleme</button>
 </div>
 <div class="text-center">
     <table class="table">
@@ -32,4 +39,42 @@
                 }
             </tbody>
     </table>
+    <form asp-action="ExcelBulkInsert" method="POST" enctype="multipart/form-data" class="mx-2">
+        <div class="input-group">
+            <input type="file" name="file" class="form-control" accept=".xlsx,.xls" />
+            <button type="submit" class="btn btn-primary">Excel ile Toplu Ekle </button>
+        </div>
+    </form>
 </div>
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $("#addStudentsByTransaction").click(function(){
+                // Burada AJAX isteği ile Transaction ile öğrenci ekleme işlemi yapılabilir
+                // Controller tarafında bir endpoint oluşturup, bu endpoint'e AJAX isteği gönderebilirsiniz.
+                var students = [
+                    { Name: "Ali", Age: 20, Department: "Bilgisayar Mühendisliği" },
+                    { Name: "Ayşe", Age: 22, Department: "Elektrik-Elektronik Mühendisliği" },
+                    { Name: "Mehmet", Age: 21, Department: "Makine Mühendisliği" }
+                ];
+
+                $.ajax(
+                    {
+                        url:'@Url.Action("AddStudentsByTransaction","Home")',
+                        type:'POST',
+                        contentType:'application/json',
+                        data:JSON.stringify(students),
+                        success: function(response){
+                            alert("Transaction ile öğrenciler eklendi!");
+                            location.reload(); // Sayfayı yenileyerek yeni eklenen öğrencileri göster
+                        },
+                        error: function(xhr, status, error){
+                          
+                            alert("Hata oluştu!");
+                        }
+                    }
+                )
+            })
+        })
+    </script>
+}

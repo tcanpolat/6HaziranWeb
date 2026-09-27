@@ -2,6 +2,8 @@ using _17_EntityFrameworkCoreExample.Data;
 using _17_EntityFrameworkCoreExample.Extensions;
 using _17_EntityFrameworkCoreExample.Models;
 using _17_EntityFrameworkCoreExample.ViewModels;
+using EFCore.BulkExtensions;
+using ExcelDataReader;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -208,5 +210,92 @@ namespace _17_EntityFrameworkCoreExample.Controllers
             ViewData["Students"] = students;
             return View();
         }
+
+        // Sql sorgularýný direkt olarak entity framework core aracýlýðýyla sql servere yollama
+        public IActionResult RawSql()
+        {
+            List<Student> students =  _context.Students.FromSqlRaw("select * from Students where Age > 25").ToList();
+            
+            return View("Index",students);
+        }
+
+        // Javascript tarafýnda Ajax isteði ile çaðýrýlacak Transaction örneði
+        // Transaction: Bir dizi iþlemin tek bir iþlem olarak ele alýnmasýdýr.
+        // Eðer iþlemlerden biri baþarýsýz olursa, tüm iþlemler geri alýnýr (rollback).
+        // Bu, veri bütünlüðünü korumak için önemlidir.
+        [HttpPost]
+        public IActionResult AddStudentsByTransaction([FromBody] List<Student> students)
+        {
+            var transaction = _context.Database.BeginTransaction();
+            try
+            {
+                _context.Students.AddRange(students);
+                _context.SaveChanges();
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                return StatusCode(500, "Öðrenciler eklenirken bir hata oluþtu");
+            }
+
+            return Ok("Öðrenciler baþarýyla eklendi");
+        }
+
+        public IActionResult BulkInsert()
+        {
+            List<Student> students = new List<Student>()
+            {
+                new Student { Name = "Ali", Age = 20, Department = "Computer Science" },
+                new Student { Name = "Ayþe", Age = 22, Department = "Mathematics" },
+                new Student { Name = "Mehmet", Age = 21, Department = "Physics" },
+            };
+
+            _context.BulkInsert(students);
+
+           return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult ExcelBulkInsert(IFormFile file)
+        {
+            if (file == null || file.Length == 0) return BadRequest("Dosya Seçilmedi.");
+
+            var students = new List<Student>();
+
+            // Excel dosyasýný okumak için Stream açýyoruz.
+            using (var stream = file.OpenReadStream())
+            {
+                // Özellikle türkçe karakterler için Encoding.UTF8 kullanýyoruz.
+                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    // ilk satýrýn baþlýk olduðunu varsayýyoruz ve atlýyoruz.
+                    reader.Read();
+                    while (reader.Read())
+                    {
+                        students.Add(new Student
+                        {
+                            Name = reader.GetValue(0)?.ToString(), // A sütun: Name
+                            Age = int.Parse(reader.GetValue(1).ToString()), // B sütun: Age
+                            Department = reader.GetValue(2).ToString() // C sütun: Department
+
+                        });
+                    }
+
+                };
+            }
+
+            // Veritabanýna toplu ekleme iþlemi
+            if (students.Any())
+            {
+                _context.BulkInsert(students);
+            }
+           
+            List<Student> allStudents = _context.Students.ToList();
+
+            return View("Index", allStudents);
+        }
+
     }
 }
