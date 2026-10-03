@@ -15,6 +15,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(
+    options =>
+    {
+        {
+            options.AddDefaultPolicy(
+             builder =>
+             {
+                 builder.AllowAnyOrigin() // AllowAnyOrigin() metodu, herhangi bir kaynaktan gelen isteklere izin verir. Bu, tüm alan adlarından gelen isteklerin kabul edileceği anlamına gelir.
+                        .AllowAnyHeader() // AllowAnyHeader() metodu, herhangi bir başlıkla gelen isteklere izin verir. Bu, tüm HTTP başlıklarının kabul edileceği anlamına gelir.
+                        .AllowAnyMethod(); // AllowAnyMethod() metodu, herhangi bir HTTP yöntemiyle gelen isteklere izin verir. Bu, GET, POST, PUT, DELETE gibi tüm HTTP yöntemlerinin kabul edileceği anlamına gelir.
+             });
+    }
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,6 +45,7 @@ using (var scope = app.Services.CreateScope())
     ProductSeeder.Seed(context);
 
 };
+app.UseCors();
 
 app.UseHttpsRedirection();
 
